@@ -1,0 +1,17 @@
+FROM php:8.1.0-fpm-alpine
+
+RUN apk --no-cache add libpng-dev curl-dev gd-dev jpeg-dev postgresql-dev nodejs yarn npm
+
+RUN docker-php-ext-install pdo pdo_pgsql gd curl fileinfo
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /var/www/azan-laravel
+
+COPY . .
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/azan-laravel/storage /var/www/azan-laravel/bootstrap/cache \
+    && chmod -R 775 /var/www/azan-laravel/storage /var/www/azan-laravel/bootstrap/cache
