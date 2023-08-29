@@ -8,10 +8,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-WORKDIR /var/www/nph-laravel
+WORKDIR /var/www/azan-laravel
 
 COPY . .
 
-RUN chown -R www-data:www-data /var/www/nph-laravel/storage /var/www/nph-laravel/bootstrap/cache
-
-RUN chmod -R 775 /var/www/nph-laravel/storage /var/www/nph-laravel/bootstrap/cache
+# Set permissions
+RUN chown -R www-data:www-data /var/www/azan-laravel/storage /var/www/azan-laravel/bootstrap/cache \
+    && chmod -R 775 /var/www/azan-laravel/storage /var/www/azan-laravel/bootstrap/cache
