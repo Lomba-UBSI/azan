@@ -32,16 +32,16 @@
                 <li class="profile-nav onhover-dropdown p-0 mr-0">
                     <div class="media profile-media"><img class="b-r-10" src="../assets/images/dashboard/profile.jpg"
                             alt="">
-                        <div class="media-body"><span>Emay Walter</span>
+                        <div class="media-body"><span>{{ Auth::user()->name }}</span>
                             <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li>
-                            <a href="#"><i data-feather="user"></i><span>Account </span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i data-feather="log-in"> </i><span>Log in</span></a>
+                            <form action="{{ route('auth.logout') }}" method="post">
+                                @csrf
+                                <button class="btn-danger btn">logout</button>
+                            </form>
                         </li>
                     </ul>
                 </li>
@@ -55,7 +55,6 @@
     </div>
     </div>
   </script>
-        <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
     </div>
 </div>
 <!-- Page Header Ends

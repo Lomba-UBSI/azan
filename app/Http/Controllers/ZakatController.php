@@ -27,7 +27,34 @@ class ZakatController extends Controller
     {
         $data = $request->except('_token', 'nominal_zakat');
         $data['nominal_zakat'] = str_replace('.', '', str_replace('Rp. ', '', $request->nominal_zakat));
-        $paymentMethods = PaymentMethod::all();
+        $paymentMethods = PaymentMethod::where('name', '!=', 'CASH')->get();
+        return view('enduser.form.payment', compact('data', 'paymentMethods'));
+    }
+    public function confirmPayment(FormRequest $request)
+    {
+        $transactionType = TransactionType::where('name', 'zakat penghasilan')->first();
+        DB::beginTransaction();
+        try {
+
+            $transaction = new Transaction;
+
+            $transaction->muzakki = $request->muzakki;
+            $transaction->payment_method_id = $request->payment_method;
+            $transaction->amount = $request->nominal_zakat;
+            $transaction->transaction_type_id = $transactionType->id;
+            $transaction->transaction_status = "CASH_ON_BAZNAS";
+
+            $transaction->save();
+
+            DB::commit();
+            $alert = NotifHelper::createAlert('success', 'Pembayaran berhasil');
+            return redirect()->route('beranda.index')->with(['alert' => $alert]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $alert = NotifHelper::createAlert('danger', $th->getMessage());
+
+            return redirect()->back()->withInput()->with(['alert' => $alert]);
+        }
         return view('enduser.form.payment', compact('data', 'paymentMethods'));
     }
 
@@ -41,6 +68,9 @@ class ZakatController extends Controller
         $data = $request->except('nominal', '_token');
         $data['amount'] = str_replace('.', '', $request->nominal);
         $data['transaction_status'] = "CASH_ON_AMIL";
+
+        $paymentMethod = PaymentMethod::where('name', "CASH")->first();
+        $data['payment_method_id'] = $paymentMethod->id;
 
         DB::beginTransaction();
         try {

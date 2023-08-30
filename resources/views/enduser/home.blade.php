@@ -146,16 +146,15 @@
                     <div class="slick-carousel carousel-arrows-light"
                         data-slick='{"slidesToShow": 4, "slidesToScroll": 4, "arrows": true, "dots": true, "responsive": [ {"breakpoint": 992, "settings": {"slidesToShow": 2, "slidesToScroll": 2}}, {"breakpoint": 767, "settings": {"slidesToShow": 1, "slidesToScroll": 1}}]}'>
                         <!-- service item #1 -->
-                        @foreach ($zakatTypes as $zt)
+                        @foreach ($asnaf as $zt)
                             <div class="service-item">
                                 <div class="service__img">
                                     <img src="{{ FileHelper::getStorageImageURL($zt->image) }}" alt="service"
                                         loading="lazy">
                                 </div><!-- /.service__img -->
                                 <div class="service__body">
-                                    <h4 class="service__title">Fakir</h4>
-                                    <p class="service__desc">mereka yang hampir tidak memiliki apa-apa sehingga tidak
-                                        mampu memenuhi kebutuhan pokok hidup. </p>
+                                    <h4 class="service__title">{{ $zt->name }}</h4>
+                                    <p class="service__desc">{{ $zt->description }}</p>
                                 </div><!-- /.service__body -->
                             </div>
                         @endforeach

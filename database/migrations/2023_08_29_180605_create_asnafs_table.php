@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('asnaf', function (Blueprint $table) {
             $table->id();
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('image')->nullable();

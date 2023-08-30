@@ -12,4 +12,14 @@ class Transaction extends Model
     protected $table = 'transaction';
 
     protected $guarded = ['id'];
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
+
+    public function transactionType()
+    {
+        return $this->belongsTo(TransactionType::class);
+    }
 }

@@ -8,17 +8,6 @@
                             Amil Zakat
                         </h3>
                     </div>
-                    <div class="col-6">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard.amil') }}">
-                                    <i data-feather="home"></i>
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">Dashboard</li>
-                            <li class="breadcrumb-item active">Ecommerce</li>
-                        </ol>
-                    </div>
                 </div>
             </div>
         </div>
@@ -39,14 +28,13 @@
                                                 <table class="table table-bordernone">
                                                     <thead>
                                                         <tr>
-                                                            <th class="f-22">
+                                                            <th>
                                                                 ID
                                                             </th>
-                                                            <th>Muszakki</th>
-                                                            <th>Status Cash</th>
-                                                            <th>Country</th>
-                                                            <th>Total</th>
-                                                            <th class="text-right">Status</th>
+                                                            <th>Muzakki</th>
+                                                            <th>Nominal</th>
+                                                            <th>Pembayaran</th>
+                                                            <th class="text-center">Status</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -56,15 +44,19 @@
                                                                     {{ $trx->id }}
                                                                 </td>
                                                                 <td>
-                                                                    {{$trx->}}
+                                                                    {{ $trx->muzakki }}
                                                                 </td>
-                                                                <td>CAP</td>
-                                                                <td><i class="flag-icon flag-icon-gb"></i>
+                                                                <td>{{ $trx->amount }}</td>
+                                                                <td class="text-center">
+                                                                    <div>
+                                                                        <img src="{{ asset($trx->paymentMethod->image) }}"
+                                                                            style="height: 25px;object-fit:contain;">
+                                                                        <p>{{ $trx->paymentMethod->name }}</p>
+                                                                    </div>
                                                                 </td>
-                                                                <td> <span class="label">$5,08,652</span>
-                                                                </td>
-                                                                <td class="text-right"><i
-                                                                        class="fa fa-check-circle"></i>Done
+                                                                <td class="text-center">
+                                                                    <i class="fa fa-check-circle"></i>
+                                                                    {{ $trx->transaction_status }}
                                                                 </td>
                                                             </tr>
                                                         @endforeach

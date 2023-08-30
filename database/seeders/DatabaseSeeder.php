@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +19,8 @@ class DatabaseSeeder extends Seeder
             AsnafSeeder::class,
             PaymentMethodSeeder::class,
             TransactionStatusSeeder::class,
-            TransactionTypeSeeder::class
+            TransactionTypeSeeder::class,
+            UserIdentitySeeder::class
         ]);
     }
 }

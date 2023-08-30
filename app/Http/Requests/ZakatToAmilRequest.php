@@ -23,7 +23,7 @@ class ZakatToAmilRequest extends FormRequest
     {
         return [
             'nominal' => 'required',
-            'name' => 'required',
+            'muzakki' => 'required',
             'email' => 'required',
             'transaction_type_id' => 'required'
         ];
@@ -33,7 +33,7 @@ class ZakatToAmilRequest extends FormRequest
     {
         return [
             'nominal.required' => 'Nominal wajib di isi.',
-            'name.required' => 'Nama wajib di isi.',
+            'muzakki.required' => 'Nama wajib di isi.',
             'email.required' => 'Email wajib diunggah.',
             'transaction_type_id.required' => 'Transaction Type wajib di isi.',
         ];

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mustahiq', function (Blueprint $table) {
             $table->id();
+            $table->string('file_url');
             $table->timestamps();
         });
     }

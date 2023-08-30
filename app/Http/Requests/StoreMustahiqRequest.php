@@ -11,7 +11,7 @@ class StoreMustahiqRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreMustahiqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'file_mustahiq' => 'required|max:10240'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'file_mustahiq.required' => 'File wajib diunggah.',
+            'file_mustahiq.max' => 'Ukuran gambar tidak boleh melebihi 10 MB.',
         ];
     }
 }

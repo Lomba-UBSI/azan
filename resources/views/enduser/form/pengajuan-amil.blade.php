@@ -38,6 +38,14 @@
                                 <div class="col">
                                     <x-input name="name" placeholder="Nama Lengkap" />
                                 </div>
+                                <script>
+                                    $("#id-name").on("input", function() {
+                                        var inputValue = $(this).val();
+                                        if (!isNaN(inputValue)) {
+                                            $(this).val("");
+                                        }
+                                    });
+                                </script>
                                 <div class="col">
                                     <x-input name="email" placeholder="Email" :default="Auth::user()->email" disabled />
                                 </div>

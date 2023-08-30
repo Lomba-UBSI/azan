@@ -29,11 +29,18 @@ class PaymentMethodSeeder extends Seeder
                 'image' => "assets\images\payment\mandiri.png"
             ],
             [
-                'name' => "Bank Mandiri",
+                'name' => "Bank BRI",
                 'number_account' => "12345678966",
                 'owner_name' => "BAZNAS",
                 'category' => "BANK TRANSFER",
                 'image' => "assets\images\payment\BRI.png"
+            ],
+            [
+                'name' => "CASH",
+                'number_account' => "12345678966",
+                'owner_name' => "BAZNAS",
+                'category' => "CASH",
+                'image' => "assets\images\payment\cash.png"
             ]
         ];
 

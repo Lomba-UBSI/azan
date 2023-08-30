@@ -116,7 +116,7 @@ class FileHelper
             $url = asset($filePath);
         }
         // Periksa apakah file ada di storage
-        if (Storage::disk('public')->exists($filePath)) {
+        if ($filePath != null && Storage::disk('public')->exists($filePath)) {
             // Jika file ditemukan, ambil URL lengkap untuk file gambar di storage dan replace default path
             $url = Storage::disk('public')->url($filePath);
         }

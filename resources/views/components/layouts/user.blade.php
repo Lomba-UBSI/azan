@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/libraries.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
+    <script src="{{ asset('assets') }}/js/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +34,6 @@
         <button id="scrollTopBtn"><i class="fas fa-long-arrow-alt-up"></i></button>
     </div><!-- /.wrapper -->
 
-    <script src="{{ asset('assets') }}/js/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins.js"></script>
     <script src="{{ asset('assets') }}/js/main.js"></script>
 

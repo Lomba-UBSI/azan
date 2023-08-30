@@ -26,10 +26,10 @@ class MenuSeeder extends Seeder
             //     "name" => 'bayar fidyah',
             //     "route" => 'fidyah.index',
             // ],
-            [
-                "name" => 'donasi',
-                "route" => 'donasi.index',
-            ],
+            // [
+            //     "name" => 'donasi',
+            //     "route" => 'donasi.index',
+            // ],
             // [
             //     "name" => 'distribusi',
             //     "route" => 'distribusi.index',

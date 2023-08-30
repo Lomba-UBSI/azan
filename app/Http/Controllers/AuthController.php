@@ -2,17 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\NotifHelper;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function index()
     {
-        return view('enduser.home');
+        return view('admin.login');
+    }
+    public function login(Request $request)
+    {
+        try {
+            $user = User::where('email', $request->email)->first();
+            if (!Hash::check($request->pasword, $user->passsord)) {
+                Auth::login($user);
+                $alert = NotifHelper::createAlert('success', 'login berhasil');
+                return redirect()->route('dashboard.super')->with(['alert' => $alert]);
+            }
+            $alert = NotifHelper::createAlert('danger', 'login gagal');
+            return redirect()->back()->with(['alert' => $alert]);
+        } catch (\Throwable $th) {
+            $alert = NotifHelper::createAlert('danger', $th->getMessage());
+            return redirect()->back()->with(['alert' => $alert]);
+        }
     }
 
     public function googleCallback()

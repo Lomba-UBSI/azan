@@ -43,10 +43,10 @@
                                                 <!--end::Description-->
                                             @enderror
                                         </div>
-                                        <x-input label="Nama Muzakki" type="text" name="name"
-                                            placeholder="Masukan Nama Muzakki" default="nama muzakki" />
+                                        <x-input label="Nama Muzakki" type="text" name="muzakki"
+                                            placeholder="Masukan Nama Muzakki" />
                                         <x-input label="Email Muzakki" type="email" name="email"
-                                            placeholder="Masukan Email Muzakki" default="emailmusakki@gmail.com" />
+                                            placeholder="Masukan Email Muzakki" />
 
                                         <x-input name="transaction_type_id" type="select" :model="$model"
                                             label="Transaction Type" />

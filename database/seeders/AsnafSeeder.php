@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Asnaf;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -46,5 +47,8 @@ class AsnafSeeder extends Seeder
                 'description' => 'mereka yang kehabisan biaya di perjalanan dalam ketaatan kepada Allah.'
             ],
         ];
+        collect($asnaf)->each(function ($m) {
+            Asnaf::create($m);
+        });
     }
 }
