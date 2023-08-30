@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -12,6 +13,7 @@ class DashboardController extends Controller
     }
     public function amil()
     {
-        return view('amil.dashboard');
+        $transactions = Transaction::all();
+        return view('amil.dashboard', compact('transactions'));
     }
 }

@@ -9097,3 +9097,8 @@ textarea.form-control {
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+
+#payment-method:hover{
+    border-color: #285AEB;
+}

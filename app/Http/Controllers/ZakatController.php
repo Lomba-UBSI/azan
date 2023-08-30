@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\NotifHelper;
 use App\Http\Requests\ZakatToAmilRequest;
 use App\Models\GeneralConfig;
+use App\Models\PaymentMethod;
 use App\Models\Transaction;
 use App\Models\TransactionType;
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,7 +27,8 @@ class ZakatController extends Controller
     {
         $data = $request->except('_token', 'nominal_zakat');
         $data['nominal_zakat'] = str_replace('.', '', str_replace('Rp. ', '', $request->nominal_zakat));
-        return view('enduser.form.payment', compact('data'));
+        $paymentMethods = PaymentMethod::all();
+        return view('enduser.form.payment', compact('data', 'paymentMethods'));
     }
 
     public function inputAmil()
@@ -46,8 +48,8 @@ class ZakatController extends Controller
             Transaction::create($data);
 
             DB::commit();
-            $alert = NotifHelper::createAlert('success', 'pengajuan sudah di kirim harap menunggu konfirmasi');
-            return redirect()->route('beranda.index')->with(['alert' => $alert]);
+            $alert = NotifHelper::createAlert('success', 'data sudah di simpan');
+            return redirect()->route('dashboard.amil')->with(['alert' => $alert]);
         } catch (\Throwable $th) {
             DB::rollBack();
             $alert = NotifHelper::createAlert('danger', $th->getMessage());

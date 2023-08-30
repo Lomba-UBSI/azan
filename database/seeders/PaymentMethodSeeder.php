@@ -18,13 +18,22 @@ class PaymentMethodSeeder extends Seeder
                 'name' => "Dana",
                 'number_account' => "12345678966",
                 'owner_name' => "BAZNAS",
-                'category' => "E-WALLET"
+                'category' => "E-WALLET",
+                'image' => "assets\images\payment\dana.png"
             ],
             [
                 'name' => "Bank Mandiri",
                 'number_account' => "12345678966",
                 'owner_name' => "BAZNAS",
-                'category' => "BANK TRANSFER"
+                'category' => "BANK TRANSFER",
+                'image' => "assets\images\payment\mandiri.png"
+            ],
+            [
+                'name' => "Bank Mandiri",
+                'number_account' => "12345678966",
+                'owner_name' => "BAZNAS",
+                'category' => "BANK TRANSFER",
+                'image' => "assets\images\payment\BRI.png"
             ]
         ];
 
