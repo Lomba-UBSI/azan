@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('transaction', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('transaction_type_id');
+            $table->string('reference_id')->nullable();
+            $table->unsignedBigInteger('payment_method_id')->nullable();
+            $table->string('transaction_status');
+            $table->string('amount');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

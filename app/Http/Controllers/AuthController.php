@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +18,6 @@ class AuthController extends Controller
     public function googleCallback()
     {
         $googleUser = Socialite::driver('google')->user();
-        dd($googleUser);
         $user = User::where(['email' => $googleUser->email])->first();
         if (!$user) {
             $user = new User;
@@ -35,8 +36,14 @@ class AuthController extends Controller
         return redirect()->route('dashboard.amil');
     }
 
-    public function logout()
+    public function logout(Request $request): RedirectResponse
     {
-        return view('enduser.home');
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('beranda.index');
     }
 }

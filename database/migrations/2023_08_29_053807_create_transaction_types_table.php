@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction_types', function (Blueprint $table) {
+        Schema::create('transaction_type', function (Blueprint $table) {
             $table->id();
+            $table->boolean('active')->default(true);
+            $table->string('name');
+            $table->string('category');
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

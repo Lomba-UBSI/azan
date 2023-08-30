@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('kk')->nullable();
             $table->string('nik');
-            $table->string('foto_ktp');
+            $table->string('whatsapp');
+            $table->string('identity');
             $table->timestamps();
         });
     }

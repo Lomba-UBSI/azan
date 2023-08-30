@@ -23,19 +23,31 @@ Route::get('/test', function () {
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/', 'EndUserController@index')->name('beranda.index');
 
-    Route::group(["prefix" => 'dashboard', "name" => 'dashboard', 'as' => 'dashboard'], function () {
-        Route::get('/', 'DashboardController@index')->name('.index');
-        Route::get('/amil', 'DashboardController@amil')->name('.amil');
+    Route::group(["middleware" => "auth"], function () {
+        Route::group(["prefix" => 'dashboard', "name" => 'dashboard', 'as' => 'dashboard'], function () {
+            Route::get('/', 'DashboardController@index')->name('.index');
+            Route::get('/amil', 'DashboardController@amil')->name('.amil');
+        });
+        Route::group(["prefix" => 'amil', "name" => 'amil', 'as' => 'amil'], function () {
+            Route::get('/input-zakat', 'ZakatController@inputAmil')->name('.input-zakat');
+            Route::post('/input-zakat', 'ZakatController@inputAmilStore')->name('.input-zakat');
+        });
+
+        Route::resource('profile', DashboardController::class);
     });
+
+
     Route::group(["prefix" => 'zakat', "name" => 'zakat', 'as' => 'zakat'], function () {
-        Route::get('/', 'DashboardController@index');
-        Route::get('/mal', 'DashboardController@index')->name('.mal');
-        Route::get('/fitrah', 'DashboardController@index')->name('.fitrah');
+        Route::get('/', 'ZakatController@index')->name('.index');
+        Route::post('/', 'ZakatController@paymentMethod')->name('.index');
     });
-    Route::resource('profile', DashboardController::class);
 
     Route::group(["prefix" => 'form', "name" => 'form', 'as' => 'form'], function () {
         Route::get('pengajuan-amil', "FormController@pengajuanAmil")->name('.pengajuan-amil');
+        Route::post('pengajuan-amil', "FormController@storePengajuanAmil")->name('.store-pengajuan-amil');
+    });
+    Route::group(["prefix" => 'donasi', "name" => 'donasi', 'as' => 'donasi'], function () {
+        Route::get('pengajuan-amil', "FormController@pengajuanAmil")->name('.index');
     });
 
     Route::group(["prefix" => 'auth', "name" => 'auth', 'as' => 'auth'], function () {

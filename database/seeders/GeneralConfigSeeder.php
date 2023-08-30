@@ -15,7 +15,7 @@ class GeneralConfigSeeder extends Seeder
         $generalConfig = [
             [
                 'code' => 'HARGA_EMAS',
-                'value' => '1000000'
+                'value' => '942985 '
             ]
         ];
 

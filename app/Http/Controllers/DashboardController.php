@@ -12,6 +12,6 @@ class DashboardController extends Controller
     }
     public function amil()
     {
-        return view('enduser.home');
+        return view('amil.dashboard');
     }
 }

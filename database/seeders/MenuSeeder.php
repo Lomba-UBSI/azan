@@ -20,19 +20,20 @@ class MenuSeeder extends Seeder
             ],
             [
                 "name" => 'zakat',
-                "type" => 'dropdown',
-                "route" => 'zakat',
+                "route" => 'zakat.index',
             ],
+            // [
+            //     "name" => 'bayar fidyah',
+            //     "route" => 'fidyah.index',
+            // ],
             [
-                "name" => 'zakat mal',
-                "route" => 'zakat.mal',
-                "parent_id" => 2,
+                "name" => 'donasi',
+                "route" => 'donasi.index',
             ],
-            [
-                "name" => 'zakat fitrah',
-                "route" => 'zakat.fitrah',
-                "parent_id" => 2,
-            ]
+            // [
+            //     "name" => 'distribusi',
+            //     "route" => 'distribusi.index',
+            // ],
         ];
 
         collect($menu)->each(function ($m) {
